@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { Button, Checkbox, Form, Input } from 'antd';
+import './login.scss'
 
 const Login: React.FC = () => {
   const navigate = useNavigate()
@@ -27,6 +29,7 @@ const Login: React.FC = () => {
     onFinish={onFinish}
     onFinishFailed={onFinishFailed}
     autoComplete="off"
+    className='login-form'
     >
       <Form.Item
         label="Username"
