@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# note
+## 路由
+> 终端处安装 react-router-dom
+在 react-router-dom 6版本中，使用的是 Routes 组件包裹route 而不是 Switch
+```js
+// App.js
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+import Login from './testRouter/login.tsx';
+import Home from './testRouter/home.tsx';
 
-## Available Scripts
+import './App.css';
 
-In the project directory, you can run:
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Login />}></Route>
+        <Route path='/home' element={<Home />}></Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
 
-### `npm start`
+export default App;
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 在页面中控制 路由跳转
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+在react-router-dom6版本中，可以使用`useNavigate`钩子来进行路由跳转。
 
-### `npm test`
+首先，需要在组件中引入`useNavigate`钩子：
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```import { useNavigate } from 'react-router-dom';```
 
-### `npm run build`
+然后，在需要进行路由跳转的地方，可以通过调用`useNavigate`钩子来获取`navigate`函数，然后使用该函数进行路由跳转。
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+例如，在点击按钮时进行路由跳转：
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```tsx
+const MyComponent = () => {
+  const navigate = useNavigate();
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  const handleClick = () => {
+    navigate('/path/to/destination');
+  };
 
-### `npm run eject`
+  return (
+    <button onClick={handleClick}>跳转到目标页面</button>
+  );
+};
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+在上述代码中，`navigate`函数接收一个字符串参数，该参数为目标页面的路径。
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+通过使用`useNavigate`钩子，可以方便地在组件中进行路由跳转，并且可以避免使用`history`对象等传统方式进行路由跳转时可能出现的一些问题。
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+ps: `const navigate = useNavigate();`必须在组件或者 hook 中使用。
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## antd5
+在终端处安装组件，然后就可以直接在组件tsx文件中按需引入antd的组件使用，不需要其他配置。
+`import { Button, Checkbox, Form, Input } from 'antd';`
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 
