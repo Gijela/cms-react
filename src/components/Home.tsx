@@ -29,7 +29,7 @@ const Home: React.FC = () => {
         <Sider><HomeMenu pathArr={pathArr} setPathArr={setPathArr} /></Sider>
         <Layout>
           <Header className="header"><BreadCrumb pathArr={pathArr} /></Header>
-          <Content>
+          <Content className="content">
             <Routes>
               <Route path="/Option1" element={<Option1 />}></Route>
               <Route path="/Option2" element={<Option2 />}></Route>

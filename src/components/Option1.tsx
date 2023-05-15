@@ -1,11 +1,18 @@
-import React from "react"
+import React from 'react';
+
+import Filter from './Filter.tsx';
+import TableComponent from './Table.tsx';
 
 import './Option1.scss'
 
-function Option1() {
-  return (
-    <div className="option1">Option1</div>
-  )
-}
+const Option1: React.FC = () => {
 
-export default Option1
+  return (
+    <div className='option1'>
+      <Filter />
+      <TableComponent />
+    </div>
+  )
+};
+
+export default Option1;

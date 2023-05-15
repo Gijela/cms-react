@@ -1,0 +1,24 @@
+.firstLine {
+  display: flex;
+  text-align: center;
+  line-height: 32px;
+  margin-top: 10px;
+
+  .RangePicker {
+    width: 330px;
+    margin-right: 10px;
+  }
+
+  .input-first {
+    width: 230px;
+    margin-right: 10px;
+  } 
+
+  .item {
+    flex-grow: 1;
+  }
+}
+
+.secondLine {
+  margin-top: 20px;
+}
