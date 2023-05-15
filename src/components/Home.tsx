@@ -19,7 +19,7 @@ const headerStyle: React.CSSProperties = {
   backgroundColor: "#7dbcea",
 };
 
-const App: React.FC = () => (
+const Home: React.FC = () => (
   <Space direction="vertical" style={{ width: "100%" }} size={[0, 48]}>
     <Layout>
       <Sider><HomeMenu /></Sider>
@@ -37,4 +37,4 @@ const App: React.FC = () => (
   </Space>
 );
 
-export default App;
+export default Home;

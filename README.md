@@ -1,7 +1,7 @@
 # note
 ## 路由
 > 终端处安装 react-router-dom
-在 react-router-dom 6版本中，使用的是 Routes 组件包裹route 而不是 Switch
+在 **react-router-dom 6版本**中，使用的是 Routes 组件包裹route 而不是 Switch
 ```js
 // App.js
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
@@ -25,7 +25,7 @@ function App() {
 export default App;
 ```
 
-### 在页面中控制 路由跳转
+### 在页面的方法中控制怎么 路由跳转
 
 在react-router-dom6版本中，可以使用`useNavigate`钩子来进行路由跳转。
 
@@ -56,6 +56,45 @@ const MyComponent = () => {
 通过使用`useNavigate`钩子，可以方便地在组件中进行路由跳转，并且可以避免使用`history`对象等传统方式进行路由跳转时可能出现的一些问题。
 
 ps: `const navigate = useNavigate();`必须在组件或者 hook 中使用。
+
+
+### 怎么设置子路由(嵌套路由)
+在 react-router-dom 6.x 中，可以使用 `<Routes>` 组件来定义子路由。需要在父级路由的 `path` 属性中添加 `*`，表示该路由下有子路由。然后在 `<Routes>` 组件中添加子路由的定义。
+
+示例代码：
+
+```jsx
+import { Routes, Route } from 'react-router-dom';
+
+function App() {
+  return (
+    <div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/posts/*" element={<Posts />} />
+      </Routes>
+    </div>
+  );
+}
+
+function Posts() {
+  return (
+    <div>
+      <h2>Posts</h2>
+      <Routes>
+        <Route path="/" element={<PostList />} />
+        <Route path="/:id" element={<PostDetail />} />
+      </Routes>
+    </div>
+  );
+}
+```
+
+在上面的例子中，`/posts/*` 表示该路由下有子路由，即 `/posts/1`、`/posts/2` 等。然后在 `Posts` 组件中使用 `<Routes>` 组件来定义子路由。子路由的 `path` 属性中不需要包含父级路由的路径，因为已经在父级路由的 `path` 属性中定义过了。
+
+举例：
+![举例](https://api2.mubu.com/v3/document_image/a1cfd1ea-2d30-4688-b41d-88be966dcd4f-11752736.jpg)
 
 ## antd5
 在终端处安装组件，然后就可以直接在组件tsx文件中按需引入antd的组件使用，不需要其他配置。
