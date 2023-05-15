@@ -54,11 +54,11 @@ const App: React.FC = () => {
     console.log("click ", e);
     // 这里只做了前面三个option的路由匹配
     if (e.key === '1') {
-      navigate('/option1')
+      navigate('/home/option1')
     } else if (e.key === '2') {
-      navigate('/option2')
+      navigate('/home/option2')
     } else if (e.key === '3') {
-      navigate('/option3')
+      navigate('/home/option3')
     }
     setCurrent(e.key);
   };

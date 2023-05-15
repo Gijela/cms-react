@@ -1,8 +1,10 @@
 import React from "react"
 
+import './Option1.scss'
+
 function Option1() {
   return (
-    <div>Option1</div>
+    <div className="option1">Option1</div>
   )
 }
 

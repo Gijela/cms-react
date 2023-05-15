@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Checkbox, Form, Input } from 'antd';
 import './login.scss'
 
-const Login: React.FC = ({isLogin, setIsLogin}) => {
+const Login: React.FC = () => {
   const navigate = useNavigate()
 
   type inputValue = {
@@ -20,8 +20,7 @@ const Login: React.FC = ({isLogin, setIsLogin}) => {
     // 这里模拟账号密码是 admin, 12345
     if (values.username === 'admin' && values.password === '12345') {
       console.log('登陆成功:', values);
-      navigate('/option1') // 在页面中实现路由跳转
-      setIsLogin(isLogin = true) // 用 isLogin 来判断是否显示菜单栏，实现在登陆页面不显示，在首页显示的效果
+      navigate('/home/option1') // 在页面中实现路由跳转
     } else {
       onFinishFailed('账号密码错误, 测试账号是admin，密码是12345')
     }
