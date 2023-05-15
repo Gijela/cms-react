@@ -12,7 +12,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Login />}></Route>
-          <Route path='/home/*' element={<Home />}></Route>
+          <Route path='/NavigationOne/*' element={<Home />}></Route>
+          <Route path='/NavigationTwo/*' element={<Home />}></Route>
+          <Route path='/NavigationThree/*' element={<Home />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

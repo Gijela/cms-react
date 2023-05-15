@@ -20,7 +20,7 @@ const Login: React.FC = () => {
     // 这里模拟账号密码是 admin, 12345
     if (values.username === 'admin' && values.password === '12345') {
       console.log('登陆成功:', values);
-      navigate('/home/option1') // 在页面中实现路由跳转
+      navigate('/NavigationOne/Option1') // 在页面中实现路由跳转
     } else {
       onFinishFailed('账号密码错误, 测试账号是admin，密码是12345')
     }

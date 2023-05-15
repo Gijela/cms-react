@@ -96,6 +96,8 @@ function Posts() {
 举例：
 ![举例](https://api2.mubu.com/v3/document_image/a1cfd1ea-2d30-4688-b41d-88be966dcd4f-11752736.jpg)
 
+
+> 推荐文章：[通过 React Router V6 源码，掌握前端路由](https://juejin.cn/post/7205023631167422522#heading-16)
 ## antd5
 在终端处安装组件，然后就可以直接在组件tsx文件中按需引入antd的组件使用，不需要其他配置。
 `import { Button, Checkbox, Form, Input } from 'antd';`

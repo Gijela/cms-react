@@ -22,45 +22,40 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem("Navigation One", "sub1", [
-    getItem("Option 1", "1"),
-    getItem("Option 2", "2"),
-    getItem("Option 3", "3"),
-    getItem("Option 4", "4"),
+  getItem("Navigation One", "NavigationOne", [
+    getItem("Option 1", "Option1"),
+    getItem("Option 2", "Option2"),
+    getItem("Option 3", "Option3"),
+    getItem("Option 4", "Option4"),
   ]),
 
-  getItem("Navigation Two", "sub2", [
-    getItem("Option 5", "5"),
-    getItem("Option 6", "6"),
-    getItem("Submenu", "sub3", [
-      getItem("Option 7", "7"),
-      getItem("Option 8", "8"),
-    ]),
+  getItem("Navigation Two", "NavigationTwo", [
+    getItem("Option 5", "Option5"),
+    getItem("Option 6", "Option6"),
   ]),
 
-  getItem("Navigation Three", "sub4", [
-    getItem("Option 9", "9"),
-    getItem("Option 10", "10"),
-    getItem("Option 11", "11"),
-    getItem("Option 12", "12"),
+  getItem("Navigation Three", "NavigationThree", [
+    getItem("Option 9", "Option9"),
+    getItem("Option 10", "Option10"),
+    getItem("Option 11", "Option11"),
+    getItem("Option 12", "Option12"),
   ]),
 ];
 
-const App: React.FC = () => {
+const App: React.FC = ({pathArr, setPathArr}) => {
   const navigate = useNavigate()
-  const [current, setCurrent] = useState("1");
+  const [current, setCurrent] = useState("Option1");
 
   const onClick: MenuProps["onClick"] = (e) => {
-    console.log("click ", e);
-    // 这里只做了前面三个option的路由匹配
-    if (e.key === '1') {
-      navigate('/home/option1')
-    } else if (e.key === '2') {
-      navigate('/home/option2')
-    } else if (e.key === '3') {
-      navigate('/home/option3')
-    }
+    // 根据点击的菜单项，动态跳转到不同的路径，而且通过 pathArr 也可以动态展示面包屑
+    pathArr = [] // 每次都清空前面的面包屑存储，否则会叠加
+    const tempPathArr = [...pathArr]
+    tempPathArr.push({title: e.keyPath[1], href: ''})
+    tempPathArr.push({title: `Option${e.keyPath[0]}`, href: ''})
+    setPathArr(tempPathArr)
+    
     setCurrent(e.key);
+    navigate(`/${e.keyPath[1]}/${e.keyPath[0]}`)
   };
 
   return (
@@ -69,7 +64,7 @@ const App: React.FC = () => {
         theme="dark"
         onClick={onClick}
         style={{ width: 256 }}
-        defaultOpenKeys={["sub1"]}
+        defaultOpenKeys={["NavigationOne"]}
         selectedKeys={[current]}
         mode="inline"
         items={items}
