@@ -22,7 +22,7 @@ const Login: React.FC = () => {
       console.log('登陆成功:', values);
       navigate('/home') // 在页面中实现路由跳转
     } else {
-      onFinishFailed('账号密码错误')
+      onFinishFailed('账号密码错误, 测试账号是admin，密码是12345')
     }
   };
 

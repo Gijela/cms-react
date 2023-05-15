@@ -1,11 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import Login from './testRouter/login.tsx';
-import Home from './testRouter/home.tsx';
+import Login from './components/login.tsx';
+import Home from './components/home.tsx';
 
-import './App.css';
-
-function App() {
+function Router() {
   return (
     <BrowserRouter>
       <Routes>
@@ -16,4 +14,4 @@ function App() {
   );
 }
 
-export default App;
+export default Router;
