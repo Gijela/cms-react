@@ -149,4 +149,79 @@ module.exports = {
 import './styles.scss';
 ```
 
-##
+## react-redux 8.x 
+React-Redux 8.x版本是一个React框架的状态管理库，它提供了一个可预测的状态容器，使得React应用程序的状态管理更加简单和可维护。下面是一个简单的例子来说明React-Redux 8.x版本的用法。
+
+首先，我们需要安装React-Redux 8.x版本和Redux库：
+
+```bash
+pnpm install react-redux@8 redux
+```
+
+接着，我们需要创建一个Redux store来存储应用程序的状态。在这个例子中，我们将创建一个计数器应用程序的store：
+
+```javascript
+import { createStore } from 'redux';
+
+const initialState = { count: 0 };
+
+function counterReducer(state = initialState, action) {
+  switch (action.type) {
+    case 'INCREMENT':
+      return { count: state.count + 1 };
+    case 'DECREMENT':
+      return { count: state.count - 1 };
+    default:
+      return state;
+  }
+}
+
+const store = createStore(counterReducer);
+```
+
+然后，我们需要将store与React应用程序连接起来。我们可以使用`<Provider>`组件将store传递给React组件：
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import App from './App';
+import store from './store';
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
+```
+
+在这个例子中，`<App>`组件是我们要渲染的根组件。我们使用`<Provider>`组件将store作为props传递给`<App>`组件。
+
+最后，我们需要在React组件中使用Redux store。我们可以使用`useSelector`和`useDispatch`钩子来访问store和dispatch action。例如，我们可以在`<App>`组件中创建两个按钮，一个用于增加计数器的值，另一个用于减少计数器的值：
+
+```javascript
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+function App() {
+  const count = useSelector(state => state.count);
+  const dispatch = useDispatch();
+
+  return (
+    <div>
+      <h1>{count}</h1>
+      <button onClick={() => dispatch({ type: 'INCREMENT' })}>Increase</button>
+      <button onClick={() => dispatch({ type: 'DECREMENT' })}>Decrease</button>
+    </div>
+  );
+}
+
+export default App;
+```
+
+在这个例子中，我们使用`useSelector`钩子来从store中获取当前计数器的值。然后，我们使用`useDispatch`钩子来获取dispatch函数，并在按钮的`onClick`事件中调用它来触发对应的action。
+
+这就是React-Redux 8.x版本的基本用法。通过使用Redux store和React-Redux提供的钩子，我们可以更方便地管理React应用程序的状态。
+
+## 
