@@ -1,6 +1,9 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 
-const initialState = { count: 0 };
+const initialState = { 
+  count: 0,
+  username: ''
+};
 
 function counterReducer(state = initialState, action) {
   switch (action.type) {
@@ -13,6 +16,20 @@ function counterReducer(state = initialState, action) {
   }
 }
 
-const store = createStore(counterReducer);
+const userReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'SET_USERNAME':
+      return { ...state, username: action.payload };
+    default:
+      return state;
+  }
+};
+
+const rootReducer = combineReducers({
+  user: userReducer,
+  counter: counterReducer
+});
+
+const store = createStore(rootReducer);
 
 export default store

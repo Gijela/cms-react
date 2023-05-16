@@ -150,6 +150,7 @@ import './styles.scss';
 ```
 
 ## react-redux 8.x 
+### 引入 react-redux 8.x 并且只定义一个全局变量
 React-Redux 8.x版本是一个React框架的状态管理库，它提供了一个可预测的状态容器，使得React应用程序的状态管理更加简单和可维护。下面是一个简单的例子来说明React-Redux 8.x版本的用法。
 
 首先，我们需要安装React-Redux 8.x版本和Redux库：
@@ -223,5 +224,104 @@ export default App;
 在这个例子中，我们使用`useSelector`钩子来从store中获取当前计数器的值。然后，我们使用`useDispatch`钩子来获取dispatch函数，并在按钮的`onClick`事件中调用它来触发对应的action。
 
 这就是React-Redux 8.x版本的基本用法。通过使用Redux store和React-Redux提供的钩子，我们可以更方便地管理React应用程序的状态。
+### 定义两个全局变量 (大于2个也一样)
+创建一个store文件夹，并在其中创建一个index.js文件，用于创建store：
+
+```javascript
+import { createStore, combineReducers } from 'redux';
+
+const initialState = {
+  username: '',
+  counter: 0
+};
+
+const userReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'SET_USERNAME':
+      return { ...state, username: action.payload };
+    default:
+      return state;
+  }
+};
+
+const counterReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'INCREMENT':
+      return { ...state, counter: state.counter + 1 };
+    default:
+      return state;
+  }
+};
+
+// 这里就是和定义一个全局变量不同的地方
+const rootReducer = combineReducers({
+  user: userReducer,
+  counter: counterReducer
+});
+
+const store = createStore(rootReducer);
+
+export default store;
+```
+
+在这里，我们定义了两个reducer，一个用于保存用户名，一个用于计数器。我们将它们合并到一个rootReducer中，并创建一个store。
+
+然后，在我们的登录组件中，我们可以通过dispatch一个action来更新store中的状态：
+
+```javascript
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+const Login = () => {
+  const dispatch = useDispatch();
+  const [username, setUsername] = useState('');
+
+  const handleLogin = () => {
+    // 登录逻辑
+    dispatch({ type: 'SET_USERNAME', payload: username });
+  };
+
+  return (
+    <div>
+      <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+      <button onClick={handleLogin}>登录</button>
+    </div>
+  );
+};
+
+export default Login;
+```
+
+在这里，我们使用useState来保存用户名，然后在handleLogin函数中，dispatch一个action来更新store中的username状态。
+
+最后，我们可以在任何组件中使用useSelector来获取store中的状态：
+
+```javascript
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+const Counter = () => {
+  const dispatch = useDispatch();
+  const counter = useSelector(state => state.counter); // ⚠️注意：获取的是 counter
+  const username = useSelector(state => state.user.username); // 注意：获取的是 user 下的 username
+
+  const handleIncrement = () => {
+    dispatch({ type: 'INCREMENT' });
+  };
+
+  return (
+    <div>
+      <p>{username}的计数器：{counter}</p>
+      <button onClick={handleIncrement}>+1</button>
+    </div>
+  );
+};
+
+export default Counter;
+```
+
+在这里，我们使用useSelector来获取store中的counter和username状态，并在handleIncrement函数中dispatch一个action来更新store中的counter状态。
+
+这样，我们就可以实现在登陆成功之后将用户名保存到全局，并且同时保存实现一个计数器。
 
 ## 

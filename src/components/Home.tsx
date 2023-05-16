@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import { Layout, Space } from "antd";
 
 import HomeMenu from "./HomeMenu.tsx";
@@ -6,8 +7,7 @@ import BreadCrumb from './Breadcrumb.tsx'
 import Option1 from "./Option1.tsx";
 import Option2 from "./Option2.tsx";
 import Option3 from "./Option3.tsx";
-import { Routes } from "react-router-dom";
-import { Route } from "react-router-dom";
+import AvatarPic from "./Avatar.tsx";
 
 import './Home.scss'
 
@@ -28,7 +28,10 @@ const Home: React.FC = () => {
       <Layout>
         <Sider><HomeMenu pathArr={pathArr} setPathArr={setPathArr} /></Sider>
         <Layout>
-          <Header className="header"><BreadCrumb pathArr={pathArr} /></Header>
+          <Header className="header">
+            <BreadCrumb pathArr={pathArr} />
+            <AvatarPic />
+          </Header>
           <Content className="content">
             <Routes>
               <Route path="/Option1" element={<Option1 />}></Route>

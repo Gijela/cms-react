@@ -1,11 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import { Button, Checkbox, Form, Input } from 'antd';
 import './login.scss'
 
 const Login: React.FC = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch();
 
   type inputValue = {
     username: string,
@@ -20,6 +22,8 @@ const Login: React.FC = () => {
     // 这里模拟账号密码是 admin, 12345
     if (values.username === 'admin' && values.password === '12345') {
       console.log('登陆成功:', values);
+      localStorage.setItem('username', values.username) // 保存到浏览器中
+      dispatch({ type: 'SET_USERNAME', payload: values.username }); // 将 username 保存到全局
       navigate('/NavigationOne/Option1') // 在页面中实现路由跳转
     } else {
       onFinishFailed('账号密码错误, 测试账号是admin，密码是12345')

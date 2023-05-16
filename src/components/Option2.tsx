@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 function Option2() {
 
-  const count = useSelector(state => state.count)
+  const count = useSelector(state => state.counter.count)
   const dispatch = useDispatch()
 
   return (
