@@ -7,6 +7,7 @@ import BreadCrumb from './Breadcrumb.tsx'
 import Option1 from "./Option1.tsx";
 import Option2 from "./Option2.tsx";
 import Option3 from "./Option3.tsx";
+import Option4 from "./Option4.tsx";
 import AvatarPic from "./Avatar.tsx";
 
 import './Home.scss'
@@ -37,6 +38,7 @@ const Home: React.FC = () => {
               <Route path="/Option1" element={<Option1 />}></Route>
               <Route path="/Option2" element={<Option2 />}></Route>
               <Route path="/Option3" element={<Option3 />}></Route>
+              <Route path="/Option4" element={<Option4 />}></Route>
             </Routes>
           </Content>
         </Layout>
