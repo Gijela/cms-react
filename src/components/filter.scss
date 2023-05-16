@@ -20,5 +20,13 @@
 }
 
 .secondLine {
+  display: flex;
+  justify-content: space-between;
+  
   margin-top: 20px;
+
+  .btns > button {
+    width: 100px;
+    margin-right: 20px;
+  }
 }

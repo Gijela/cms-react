@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DatePicker, Space, Input, Select  } from 'antd';
+import { DatePicker, Space, Input, Select, Button  } from 'antd';
 
 import './filter.scss'
 
@@ -65,44 +65,50 @@ const Filter: React.FC = () => {
         </div>
       </div>
       <div className='secondLine'>
-        模糊查询：
-        <Select
-          showSearch
-          style={{ width: 200 }}
-          placeholder="模糊查询"
-          optionFilterProp="children"
-          filterOption={(input, option) => (option?.label ?? '').includes(input)}
-          filterSort={(optionA, optionB) =>
-            (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
-          }
-          onChange={handleShowSearch}
-          options={[
-            {
-              value: '1',
-              label: 'Not Identified',
-            },
-            {
-              value: '2',
-              label: 'Closed',
-            },
-            {
-              value: '3',
-              label: 'Communicated',
-            },
-            {
-              value: '4',
-              label: 'Identified',
-            },
-            {
-              value: '5',
-              label: 'Resolved',
-            },
-            {
-              value: '6',
-              label: 'Cancelled',
-            },
-          ]}
-        />
+        <div>
+          模糊查询：
+          <Select
+            showSearch
+            style={{ width: 200 }}
+            placeholder="模糊查询"
+            optionFilterProp="children"
+            filterOption={(input, option) => (option?.label ?? '').includes(input)}
+            filterSort={(optionA, optionB) =>
+              (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+            }
+            onChange={handleShowSearch}
+            options={[
+              {
+                value: '1',
+                label: 'Not Identified',
+              },
+              {
+                value: '2',
+                label: 'Closed',
+              },
+              {
+                value: '3',
+                label: 'Communicated',
+              },
+              {
+                value: '4',
+                label: 'Identified',
+              },
+              {
+                value: '5',
+                label: 'Resolved',
+              },
+              {
+                value: '6',
+                label: 'Cancelled',
+              },
+            ]}
+          />
+        </div>
+        <div className='btns'>
+          <Button>重置</Button>
+          <Button type="primary" className='queryBtn'>查询</Button>
+        </div>
       </div>
     </>
   )

@@ -9,6 +9,7 @@ interface DataType {
   address: string;
 }
 
+// 列
 const columns: ColumnsType<DataType> = [
   {
     title: 'Name',
@@ -24,6 +25,7 @@ const columns: ColumnsType<DataType> = [
   },
 ];
 
+// 表格数据
 const data: DataType[] = [];
 for (let i = 0; i < 46; i++) {
   data.push({
@@ -41,6 +43,10 @@ const TableComponent: React.FC = () => {
   const start = () => {
     setLoading(true);
     // ajax request after empty completing
+    // 在这里发送请求，这里可以获取到被选中数据项的索引
+    console.warn(selectedRowKeys, 'selectKeys');
+    
+    // 这个定时器模拟发送请求，且完成后清空选中数组
     setTimeout(() => {
       setSelectedRowKeys([]);
       setLoading(false);
@@ -60,12 +66,13 @@ const TableComponent: React.FC = () => {
 
   return (
     <div>
-      <div style={{ marginBottom: 16 }}>
+      <div style={{ marginBottom: 16, marginTop: 20 }}>
         <Button type="primary" onClick={start} disabled={!hasSelected} loading={loading}>
-          Reload
+          携带选中项发送请求
         </Button>
         <span style={{ marginLeft: 8 }}>
-          {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
+          {/* {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''} */}
+          {hasSelected ? `Selected [${selectedRowKeys}]` : ''}
         </span>
       </div>
       <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
