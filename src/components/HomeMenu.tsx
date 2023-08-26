@@ -30,7 +30,7 @@ const items: MenuItem[] = [
   ]),
 
   getItem("Navigation Two", "NavigationTwo", [
-    getItem("Option 5", "Option5"),
+    getItem("切片上传下载", "Option5"),
     getItem("Option 6", "Option6"),
   ]),
 
