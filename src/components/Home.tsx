@@ -9,6 +9,7 @@ import Option2 from "./Option2.tsx";
 import Option3 from "./Option3.tsx";
 import Option4 from "./Option4.tsx";
 import AvatarPic from "./Avatar.tsx";
+import Upload from '../page/upload/index.tsx'
 
 import './Home.scss'
 
@@ -39,6 +40,7 @@ const Home: React.FC = () => {
               <Route path="/Option2" element={<Option2 />}></Route>
               <Route path="/Option3" element={<Option3 />}></Route>
               <Route path="/Option4" element={<Option4 />}></Route>
+              <Route path="/Option5" element={<Upload />}></Route>
             </Routes>
           </Content>
         </Layout>
